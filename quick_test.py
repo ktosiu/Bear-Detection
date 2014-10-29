@@ -68,7 +68,7 @@ for path in image_paths:
 
 	top_labels = labels[top_pred[:max_pred]]
 	print(top_labels)
-	print('Bear label indices:', top_pred.index(294), top_pred.index(295))
+	print('Bear label indices:', top_pred_lst.index(294), top_pred_lst.index(295))
 	print()
 
 
