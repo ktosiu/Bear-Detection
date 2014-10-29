@@ -3,6 +3,8 @@
 Using Python 2.7 and Caffe to classify images in `bearSightings` dataset.
 """
 
+from __future__ import print_function
+
 import fnmatch
 import numpy as np 
 import os 
@@ -32,6 +34,8 @@ net = caffe.Classifier(MODEL_FILE, PRETRAINED,
 
 # Load the classification labels
 labels = np.loadtxt(os.path.join(caffe_root, 'data/ilsvrc12/synset_words.txt'), str, delimiter='\t')
+
+print("Number of labels:", len(labels))
 
 # Get the labels that have 'bear' in them
 #bear_labels = [i for i, x in enumerate(labels) if 'bear' in x]
@@ -64,6 +68,7 @@ for path in image_paths:
 
 	top_labels = labels[top_pred[:max_pred]]
 	print(top_labels)
+	print('Bear label indices:', top_pred.index(294), top_pred.index(295))
 	print()
 
 
