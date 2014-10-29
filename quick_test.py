@@ -18,7 +18,7 @@ PRETRAINED = os.path.join(caffe_root, 'models/bvlc_reference_caffenet/bvlc_refer
 
 def gen_find(topdir, pattern):
 	""" Generator which yields files in a directory matching a pattern """
-	for path, dirlist, filelist in os.path.walk(topdir):
+	for path, dirlist, filelist in os.walk(topdir):
 		for name in fnmatch.filter(filelist, pattern):
 			yield os.path.join(path, name)
 

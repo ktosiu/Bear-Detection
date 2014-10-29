@@ -126,6 +126,16 @@ Run tests
 cd /opt/caffe && make runtest
 ```
 
+## Optional Changes
+
+Add `/opt/caffe` to PYTHONPATH
+```
+# In ~/.bashrc
+export PYTHONPATH=$PYTHONPATH:/opt/caffe/python
+```
+
+# Examples
+
 ## Running MNIST LeNet Example
 
 Depending on whether or not you're using Caffe w/ GPU, this could take a few minutes or a few hours...
