@@ -56,6 +56,7 @@ top_pred = prediction.flatten().argsort()[::-1]
 # Now try it for all images...
 max_pred = 10 	# the number of top predictions to report
 for path in image_paths:
+	print(path)
 	input_image = caffe.io.load_image(path)
 	prediction = net.predict([input_image])
 	top_pred = prediction.flatten().argsort()[::-1]
@@ -63,6 +64,7 @@ for path in image_paths:
 
 	top_labels = labels[top_pred[:max_pred]]
 	print(top_labels)
+	print()
 
 
 
