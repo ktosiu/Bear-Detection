@@ -1,0 +1,897 @@
+In [1]: %run quick_test.py
+libdc1394 error: Failed to initialize libdc1394
+/usr/lib/python2.7/dist-packages/pkg_resources.py:1031: UserWarning: /home/ubuntu/.python-eggs is writable by group/others and vulnerable to attack when used with get_resource_filename. Consider a more secure location (set with .set_extraction_path or the PYTHON_EGG_CACHE environment variable).
+  warnings.warn(msg, UserWarning)
+WARNING: Logging before InitGoogleLogging() is written to STDERR
+I1029 08:28:40.086062  1910 net.cpp:39] Initializing net from parameters: 
+name: "CaffeNet"
+layers {
+  bottom: "data"
+  top: "conv1"
+  name: "conv1"
+  type: CONVOLUTION
+  convolution_param {
+    num_output: 96
+    kernel_size: 11
+    stride: 4
+  }
+}
+layers {
+  bottom: "conv1"
+  top: "conv1"
+  name: "relu1"
+  type: RELU
+}
+layers {
+  bottom: "conv1"
+  top: "pool1"
+  name: "pool1"
+  type: POOLING
+  pooling_param {
+    pool: MAX
+    kernel_size: 3
+    stride: 2
+  }
+}
+layers {
+  bottom: "pool1"
+  top: "norm1"
+  name: "norm1"
+  type: LRN
+  lrn_param {
+    local_size: 5
+    alpha: 0.0001
+    beta: 0.75
+  }
+}
+layers {
+  bottom: "norm1"
+  top: "conv2"
+  name: "conv2"
+  type: CONVOLUTION
+  convolution_param {
+    num_output: 256
+    pad: 2
+    kernel_size: 5
+    group: 2
+  }
+}
+layers {
+  bottom: "conv2"
+  top: "conv2"
+  name: "relu2"
+  type: RELU
+}
+layers {
+  bottom: "conv2"
+  top: "pool2"
+  name: "pool2"
+  type: POOLING
+  pooling_param {
+    pool: MAX
+    kernel_size: 3
+    stride: 2
+  }
+}
+layers {
+  bottom: "pool2"
+  top: "norm2"
+  name: "norm2"
+  type: LRN
+  lrn_param {
+    local_size: 5
+    alpha: 0.0001
+    beta: 0.75
+  }
+}
+layers {
+  bottom: "norm2"
+  top: "conv3"
+  name: "conv3"
+  type: CONVOLUTION
+  convolution_param {
+    num_output: 384
+    pad: 1
+    kernel_size: 3
+  }
+}
+layers {
+  bottom: "conv3"
+  top: "conv3"
+  name: "relu3"
+  type: RELU
+}
+layers {
+  bottom: "conv3"
+  top: "conv4"
+  name: "conv4"
+  type: CONVOLUTION
+  convolution_param {
+    num_output: 384
+    pad: 1
+    kernel_size: 3
+    group: 2
+  }
+}
+layers {
+  bottom: "conv4"
+  top: "conv4"
+  name: "relu4"
+  type: RELU
+}
+layers {
+  bottom: "conv4"
+  top: "conv5"
+  name: "conv5"
+  type: CONVOLUTION
+  convolution_param {
+    num_output: 256
+    pad: 1
+    kernel_size: 3
+    group: 2
+  }
+}
+layers {
+  bottom: "conv5"
+  top: "conv5"
+  name: "relu5"
+  type: RELU
+}
+layers {
+  bottom: "conv5"
+  top: "pool5"
+  name: "pool5"
+  type: POOLING
+  pooling_param {
+    pool: MAX
+    kernel_size: 3
+    stride: 2
+  }
+}
+layers {
+  bottom: "pool5"
+  top: "fc6"
+  name: "fc6"
+  type: INNER_PRODUCT
+  inner_product_param {
+    num_output: 4096
+  }
+}
+layers {
+  bottom: "fc6"
+  top: "fc6"
+  name: "relu6"
+  type: RELU
+}
+layers {
+  bottom: "fc6"
+  top: "fc6"
+  name: "drop6"
+  type: DROPOUT
+  dropout_param {
+    dropout_ratio: 0.5
+  }
+}
+layers {
+  bottom: "fc6"
+  top: "fc7"
+  name: "fc7"
+  type: INNER_PRODUCT
+  inner_product_param {
+    num_output: 4096
+  }
+}
+layers {
+  bottom: "fc7"
+  top: "fc7"
+  name: "relu7"
+  type: RELU
+}
+layers {
+  bottom: "fc7"
+  top: "fc7"
+  name: "drop7"
+  type: DROPOUT
+  dropout_param {
+    dropout_ratio: 0.5
+  }
+}
+layers {
+  bottom: "fc7"
+  top: "fc8"
+  name: "fc8"
+  type: INNER_PRODUCT
+  inner_product_param {
+    num_output: 1000
+  }
+}
+layers {
+  bottom: "fc8"
+  top: "prob"
+  name: "prob"
+  type: SOFTMAX
+}
+input: "data"
+input_dim: 10
+input_dim: 3
+input_dim: 227
+input_dim: 227
+I1029 08:28:40.086869  1910 net.cpp:358] Input 0 -> data
+I1029 08:28:40.086925  1910 net.cpp:67] Creating Layer conv1
+I1029 08:28:40.086941  1910 net.cpp:394] conv1 <- data
+I1029 08:28:40.086951  1910 net.cpp:356] conv1 -> conv1
+I1029 08:28:40.086968  1910 net.cpp:96] Setting up conv1
+I1029 08:28:40.087079  1910 net.cpp:103] Top shape: 10 96 55 55 (2904000)
+I1029 08:28:40.087116  1910 net.cpp:67] Creating Layer relu1
+I1029 08:28:40.087131  1910 net.cpp:394] relu1 <- conv1
+I1029 08:28:40.087141  1910 net.cpp:345] relu1 -> conv1 (in-place)
+I1029 08:28:40.087151  1910 net.cpp:96] Setting up relu1
+I1029 08:28:40.087162  1910 net.cpp:103] Top shape: 10 96 55 55 (2904000)
+I1029 08:28:40.087172  1910 net.cpp:67] Creating Layer pool1
+I1029 08:28:40.087182  1910 net.cpp:394] pool1 <- conv1
+I1029 08:28:40.087193  1910 net.cpp:356] pool1 -> pool1
+I1029 08:28:40.087209  1910 net.cpp:96] Setting up pool1
+I1029 08:28:40.087224  1910 net.cpp:103] Top shape: 10 96 27 27 (699840)
+I1029 08:28:40.087239  1910 net.cpp:67] Creating Layer norm1
+I1029 08:28:40.087249  1910 net.cpp:394] norm1 <- pool1
+I1029 08:28:40.087260  1910 net.cpp:356] norm1 -> norm1
+I1029 08:28:40.087271  1910 net.cpp:96] Setting up norm1
+I1029 08:28:40.087283  1910 net.cpp:103] Top shape: 10 96 27 27 (699840)
+I1029 08:28:40.087301  1910 net.cpp:67] Creating Layer conv2
+I1029 08:28:40.087311  1910 net.cpp:394] conv2 <- norm1
+I1029 08:28:40.087323  1910 net.cpp:356] conv2 -> conv2
+I1029 08:28:40.087339  1910 net.cpp:96] Setting up conv2
+I1029 08:28:40.087947  1910 net.cpp:103] Top shape: 10 256 27 27 (1866240)
+I1029 08:28:40.087975  1910 net.cpp:67] Creating Layer relu2
+I1029 08:28:40.087986  1910 net.cpp:394] relu2 <- conv2
+I1029 08:28:40.087998  1910 net.cpp:345] relu2 -> conv2 (in-place)
+I1029 08:28:40.088011  1910 net.cpp:96] Setting up relu2
+I1029 08:28:40.088017  1910 net.cpp:103] Top shape: 10 256 27 27 (1866240)
+I1029 08:28:40.088027  1910 net.cpp:67] Creating Layer pool2
+I1029 08:28:40.088034  1910 net.cpp:394] pool2 <- conv2
+I1029 08:28:40.088044  1910 net.cpp:356] pool2 -> pool2
+I1029 08:28:40.088055  1910 net.cpp:96] Setting up pool2
+I1029 08:28:40.088064  1910 net.cpp:103] Top shape: 10 256 13 13 (432640)
+I1029 08:28:40.088075  1910 net.cpp:67] Creating Layer norm2
+I1029 08:28:40.088090  1910 net.cpp:394] norm2 <- pool2
+I1029 08:28:40.088099  1910 net.cpp:356] norm2 -> norm2
+I1029 08:28:40.088109  1910 net.cpp:96] Setting up norm2
+I1029 08:28:40.088119  1910 net.cpp:103] Top shape: 10 256 13 13 (432640)
+I1029 08:28:40.088131  1910 net.cpp:67] Creating Layer conv3
+I1029 08:28:40.088141  1910 net.cpp:394] conv3 <- norm2
+I1029 08:28:40.088151  1910 net.cpp:356] conv3 -> conv3
+I1029 08:28:40.088162  1910 net.cpp:96] Setting up conv3
+I1029 08:28:40.089632  1910 net.cpp:103] Top shape: 10 384 13 13 (648960)
+I1029 08:28:40.089659  1910 net.cpp:67] Creating Layer relu3
+I1029 08:28:40.089669  1910 net.cpp:394] relu3 <- conv3
+I1029 08:28:40.089681  1910 net.cpp:345] relu3 -> conv3 (in-place)
+I1029 08:28:40.089692  1910 net.cpp:96] Setting up relu3
+I1029 08:28:40.089700  1910 net.cpp:103] Top shape: 10 384 13 13 (648960)
+I1029 08:28:40.089711  1910 net.cpp:67] Creating Layer conv4
+I1029 08:28:40.089720  1910 net.cpp:394] conv4 <- conv3
+I1029 08:28:40.089728  1910 net.cpp:356] conv4 -> conv4
+I1029 08:28:40.089740  1910 net.cpp:96] Setting up conv4
+I1029 08:28:40.090873  1910 net.cpp:103] Top shape: 10 384 13 13 (648960)
+I1029 08:28:40.090898  1910 net.cpp:67] Creating Layer relu4
+I1029 08:28:40.090906  1910 net.cpp:394] relu4 <- conv4
+I1029 08:28:40.090915  1910 net.cpp:345] relu4 -> conv4 (in-place)
+I1029 08:28:40.090924  1910 net.cpp:96] Setting up relu4
+I1029 08:28:40.090934  1910 net.cpp:103] Top shape: 10 384 13 13 (648960)
+I1029 08:28:40.090948  1910 net.cpp:67] Creating Layer conv5
+I1029 08:28:40.090970  1910 net.cpp:394] conv5 <- conv4
+I1029 08:28:40.090987  1910 net.cpp:356] conv5 -> conv5
+I1029 08:28:40.091001  1910 net.cpp:96] Setting up conv5
+I1029 08:28:40.091848  1910 net.cpp:103] Top shape: 10 256 13 13 (432640)
+I1029 08:28:40.091881  1910 net.cpp:67] Creating Layer relu5
+I1029 08:28:40.091897  1910 net.cpp:394] relu5 <- conv5
+I1029 08:28:40.091907  1910 net.cpp:345] relu5 -> conv5 (in-place)
+I1029 08:28:40.091917  1910 net.cpp:96] Setting up relu5
+I1029 08:28:40.091924  1910 net.cpp:103] Top shape: 10 256 13 13 (432640)
+I1029 08:28:40.091935  1910 net.cpp:67] Creating Layer pool5
+I1029 08:28:40.091944  1910 net.cpp:394] pool5 <- conv5
+I1029 08:28:40.091953  1910 net.cpp:356] pool5 -> pool5
+I1029 08:28:40.091964  1910 net.cpp:96] Setting up pool5
+I1029 08:28:40.091974  1910 net.cpp:103] Top shape: 10 256 6 6 (92160)
+I1029 08:28:40.091984  1910 net.cpp:67] Creating Layer fc6
+I1029 08:28:40.091991  1910 net.cpp:394] fc6 <- pool5
+I1029 08:28:40.092000  1910 net.cpp:356] fc6 -> fc6
+I1029 08:28:40.092011  1910 net.cpp:96] Setting up fc6
+I1029 08:28:40.144492  1910 net.cpp:103] Top shape: 10 4096 1 1 (40960)
+I1029 08:28:40.144574  1910 net.cpp:67] Creating Layer relu6
+I1029 08:28:40.144585  1910 net.cpp:394] relu6 <- fc6
+I1029 08:28:40.144598  1910 net.cpp:345] relu6 -> fc6 (in-place)
+I1029 08:28:40.144611  1910 net.cpp:96] Setting up relu6
+I1029 08:28:40.144620  1910 net.cpp:103] Top shape: 10 4096 1 1 (40960)
+I1029 08:28:40.144640  1910 net.cpp:67] Creating Layer drop6
+I1029 08:28:40.144654  1910 net.cpp:394] drop6 <- fc6
+I1029 08:28:40.144665  1910 net.cpp:345] drop6 -> fc6 (in-place)
+I1029 08:28:40.144675  1910 net.cpp:96] Setting up drop6
+I1029 08:28:40.144688  1910 net.cpp:103] Top shape: 10 4096 1 1 (40960)
+I1029 08:28:40.144704  1910 net.cpp:67] Creating Layer fc7
+I1029 08:28:40.144716  1910 net.cpp:394] fc7 <- fc6
+I1029 08:28:40.144727  1910 net.cpp:356] fc7 -> fc7
+I1029 08:28:40.144744  1910 net.cpp:96] Setting up fc7
+I1029 08:28:40.168607  1910 net.cpp:103] Top shape: 10 4096 1 1 (40960)
+I1029 08:28:40.168689  1910 net.cpp:67] Creating Layer relu7
+I1029 08:28:40.168699  1910 net.cpp:394] relu7 <- fc7
+I1029 08:28:40.168711  1910 net.cpp:345] relu7 -> fc7 (in-place)
+I1029 08:28:40.168725  1910 net.cpp:96] Setting up relu7
+I1029 08:28:40.168735  1910 net.cpp:103] Top shape: 10 4096 1 1 (40960)
+I1029 08:28:40.168755  1910 net.cpp:67] Creating Layer drop7
+I1029 08:28:40.168762  1910 net.cpp:394] drop7 <- fc7
+I1029 08:28:40.168772  1910 net.cpp:345] drop7 -> fc7 (in-place)
+I1029 08:28:40.168781  1910 net.cpp:96] Setting up drop7
+I1029 08:28:40.168790  1910 net.cpp:103] Top shape: 10 4096 1 1 (40960)
+I1029 08:28:40.168807  1910 net.cpp:67] Creating Layer fc8
+I1029 08:28:40.168817  1910 net.cpp:394] fc8 <- fc7
+I1029 08:28:40.168825  1910 net.cpp:356] fc8 -> fc8
+I1029 08:28:40.168839  1910 net.cpp:96] Setting up fc8
+I1029 08:28:40.174495  1910 net.cpp:103] Top shape: 10 1000 1 1 (10000)
+I1029 08:28:40.174547  1910 net.cpp:67] Creating Layer prob
+I1029 08:28:40.174558  1910 net.cpp:394] prob <- fc8
+I1029 08:28:40.174569  1910 net.cpp:356] prob -> prob
+I1029 08:28:40.174592  1910 net.cpp:96] Setting up prob
+I1029 08:28:40.174617  1910 net.cpp:103] Top shape: 10 1000 1 1 (10000)
+I1029 08:28:40.174629  1910 net.cpp:172] prob does not need backward computation.
+I1029 08:28:40.174638  1910 net.cpp:172] fc8 does not need backward computation.
+I1029 08:28:40.174645  1910 net.cpp:172] drop7 does not need backward computation.
+I1029 08:28:40.174653  1910 net.cpp:172] relu7 does not need backward computation.
+I1029 08:28:40.174660  1910 net.cpp:172] fc7 does not need backward computation.
+I1029 08:28:40.174669  1910 net.cpp:172] drop6 does not need backward computation.
+I1029 08:28:40.174675  1910 net.cpp:172] relu6 does not need backward computation.
+I1029 08:28:40.174684  1910 net.cpp:172] fc6 does not need backward computation.
+I1029 08:28:40.174691  1910 net.cpp:172] pool5 does not need backward computation.
+I1029 08:28:40.174698  1910 net.cpp:172] relu5 does not need backward computation.
+I1029 08:28:40.174706  1910 net.cpp:172] conv5 does not need backward computation.
+I1029 08:28:40.174715  1910 net.cpp:172] relu4 does not need backward computation.
+I1029 08:28:40.174722  1910 net.cpp:172] conv4 does not need backward computation.
+I1029 08:28:40.174729  1910 net.cpp:172] relu3 does not need backward computation.
+I1029 08:28:40.174737  1910 net.cpp:172] conv3 does not need backward computation.
+I1029 08:28:40.174744  1910 net.cpp:172] norm2 does not need backward computation.
+I1029 08:28:40.174752  1910 net.cpp:172] pool2 does not need backward computation.
+I1029 08:28:40.174767  1910 net.cpp:172] relu2 does not need backward computation.
+I1029 08:28:40.174775  1910 net.cpp:172] conv2 does not need backward computation.
+I1029 08:28:40.174782  1910 net.cpp:172] norm1 does not need backward computation.
+I1029 08:28:40.174789  1910 net.cpp:172] pool1 does not need backward computation.
+I1029 08:28:40.174798  1910 net.cpp:172] relu1 does not need backward computation.
+I1029 08:28:40.174804  1910 net.cpp:172] conv1 does not need backward computation.
+I1029 08:28:40.174811  1910 net.cpp:208] This network produces output prob
+I1029 08:28:40.174831  1910 net.cpp:467] Collecting Learning Rate and Weight Decay.
+I1029 08:28:40.174850  1910 net.cpp:219] Network initialization done.
+I1029 08:28:40.174859  1910 net.cpp:220] Memory required for data: 62497920
+E1029 08:28:40.613253  1910 upgrade_proto.cpp:611] Attempting to upgrade input file specified using deprecated transformation parameters: /opt/caffe/models/bvlc_reference_caffenet/bvlc_reference_caffenet.caffemodel
+I1029 08:28:40.613307  1910 upgrade_proto.cpp:614] Successfully upgraded file specified using deprecated data transformation parameters.
+E1029 08:28:40.613317  1910 upgrade_proto.cpp:616] Note that future Caffe releases will only support transform_param messages for transformation fields.
+Number of labels: 1000
+./data/bearSightings/bear_0031.jpg
+['n03895866 passenger car, coach, carriage' 'n04532670 viaduct'
+ 'n03393912 freight car' 'n04005630 prison, prison house'
+ 'n03272562 electric locomotive' 'n03933933 pier'
+ 'n03160309 dam, dike, dyke' 'n04366367 suspension bridge'
+ 'n04335435 streetcar, tram, tramcar, trolley, trolley car'
+ 'n04310018 steam locomotive']
+Bear label indices: 444 399
+
+./data/bearSightings/bear_0000.jpg
+['n03895866 passenger car, coach, carriage' 'n03160309 dam, dike, dyke'
+ 'n04532670 viaduct' 'n03933933 pier' 'n04366367 suspension bridge'
+ 'n03393912 freight car' 'n04005630 prison, prison house'
+ 'n03000134 chainlink fence'
+ 'n02788148 bannister, banister, balustrade, balusters, handrail'
+ 'n03272562 electric locomotive']
+Bear label indices: 570 472
+
+./data/bearSightings/bear_0004.jpg
+['n03895866 passenger car, coach, carriage' 'n04532670 viaduct'
+ 'n03160309 dam, dike, dyke' 'n03933933 pier'
+ 'n04005630 prison, prison house' 'n03393912 freight car'
+ 'n04366367 suspension bridge' 'n03000134 chainlink fence'
+ 'n02788148 bannister, banister, balustrade, balusters, handrail'
+ 'n03272562 electric locomotive']
+Bear label indices: 550 459
+
+./data/bearSightings/bear_0033.jpg
+['n03895866 passenger car, coach, carriage' 'n04532670 viaduct'
+ 'n03393912 freight car' 'n04005630 prison, prison house'
+ 'n03272562 electric locomotive' 'n03933933 pier'
+ 'n04366367 suspension bridge' 'n03160309 dam, dike, dyke'
+ 'n04335435 streetcar, tram, tramcar, trolley, trolley car'
+ 'n04310018 steam locomotive']
+Bear label indices: 429 395
+
+./data/bearSightings/bear_0024.jpg
+['n03895866 passenger car, coach, carriage' 'n04532670 viaduct'
+ 'n03393912 freight car' 'n04005630 prison, prison house'
+ 'n03272562 electric locomotive' 'n03933933 pier'
+ 'n03160309 dam, dike, dyke' 'n04366367 suspension bridge'
+ 'n04335435 streetcar, tram, tramcar, trolley, trolley car'
+ 'n04310018 steam locomotive']
+Bear label indices: 461 430
+
+./data/bearSightings/bear_0053.jpg
+['n03895866 passenger car, coach, carriage' 'n04532670 viaduct'
+ 'n02788148 bannister, banister, balustrade, balusters, handrail'
+ 'n03160309 dam, dike, dyke' 'n04366367 suspension bridge'
+ 'n03393912 freight car'
+ 'n04604644 worm fence, snake fence, snake-rail fence, Virginia fence'
+ 'n03457902 greenhouse, nursery, glasshouse' 'n03933933 pier'
+ 'n04005630 prison, prison house']
+Bear label indices: 473 333
+
+./data/bearSightings/bear_0002.jpg
+['n03895866 passenger car, coach, carriage' 'n03160309 dam, dike, dyke'
+ 'n04532670 viaduct' 'n03933933 pier' 'n04366367 suspension bridge'
+ 'n03393912 freight car' 'n04005630 prison, prison house'
+ 'n03000134 chainlink fence'
+ 'n02788148 bannister, banister, balustrade, balusters, handrail'
+ 'n03956157 planetarium']
+Bear label indices: 558 471
+
+./data/bearSightings/bear_0035.jpg
+['n03895866 passenger car, coach, carriage' 'n04532670 viaduct'
+ 'n03393912 freight car'
+ 'n04604644 worm fence, snake fence, snake-rail fence, Virginia fence'
+ 'n04366367 suspension bridge' 'n03160309 dam, dike, dyke'
+ 'n04005630 prison, prison house' 'n03272562 electric locomotive'
+ 'n02793495 barn' 'n03457902 greenhouse, nursery, glasshouse']
+Bear label indices: 479 306
+
+./data/bearSightings/bear_0006.jpg
+['n03895866 passenger car, coach, carriage' 'n04532670 viaduct'
+ 'n03160309 dam, dike, dyke' 'n03933933 pier' 'n03393912 freight car'
+ 'n04005630 prison, prison house' 'n04366367 suspension bridge'
+ 'n03000134 chainlink fence' 'n03272562 electric locomotive'
+ 'n04335435 streetcar, tram, tramcar, trolley, trolley car']
+Bear label indices: 544 445
+
+./data/bearSightings/bear_0047.jpg
+['n03895866 passenger car, coach, carriage' 'n04532670 viaduct'
+ 'n03393912 freight car' 'n04005630 prison, prison house'
+ 'n03160309 dam, dike, dyke' 'n07802026 hay' 'n02793495 barn'
+ 'n03272562 electric locomotive' 'n03933933 pier'
+ 'n04366367 suspension bridge']
+Bear label indices: 437 387
+
+./data/bearSightings/bear_0052.jpg
+['n03895866 passenger car, coach, carriage' 'n04532670 viaduct'
+ 'n02788148 bannister, banister, balustrade, balusters, handrail'
+ 'n03160309 dam, dike, dyke' 'n04366367 suspension bridge'
+ 'n03393912 freight car'
+ 'n04604644 worm fence, snake fence, snake-rail fence, Virginia fence'
+ 'n03457902 greenhouse, nursery, glasshouse' 'n03933933 pier'
+ 'n03891251 park bench']
+Bear label indices: 504 336
+
+./data/bearSightings/bear_0056.jpg
+['n03895866 passenger car, coach, carriage' 'n04532670 viaduct'
+ 'n04366367 suspension bridge' 'n03160309 dam, dike, dyke'
+ 'n03393912 freight car'
+ 'n02788148 bannister, banister, balustrade, balusters, handrail'
+ 'n04604644 worm fence, snake fence, snake-rail fence, Virginia fence'
+ 'n04005630 prison, prison house'
+ 'n03457902 greenhouse, nursery, glasshouse' 'n03891251 park bench']
+Bear label indices: 427 330
+
+./data/bearSightings/bear_0013.jpg
+['n03895866 passenger car, coach, carriage' 'n04532670 viaduct'
+ 'n03393912 freight car' 'n03272562 electric locomotive'
+ 'n04005630 prison, prison house' 'n03160309 dam, dike, dyke'
+ 'n03933933 pier' 'n04366367 suspension bridge'
+ 'n04310018 steam locomotive'
+ 'n04335435 streetcar, tram, tramcar, trolley, trolley car']
+Bear label indices: 461 381
+
+./data/bearSightings/bear_0021.jpg
+['n03895866 passenger car, coach, carriage' 'n04532670 viaduct'
+ 'n03393912 freight car' 'n04005630 prison, prison house'
+ 'n03272562 electric locomotive' 'n03160309 dam, dike, dyke'
+ 'n03933933 pier' 'n04366367 suspension bridge'
+ 'n04335435 streetcar, tram, tramcar, trolley, trolley car'
+ 'n04310018 steam locomotive']
+Bear label indices: 465 427
+
+./data/bearSightings/bear_0029.jpg
+['n03895866 passenger car, coach, carriage' 'n04532670 viaduct'
+ 'n03393912 freight car' 'n04005630 prison, prison house'
+ 'n03272562 electric locomotive' 'n03933933 pier'
+ 'n03160309 dam, dike, dyke' 'n04366367 suspension bridge'
+ 'n04335435 streetcar, tram, tramcar, trolley, trolley car'
+ 'n04310018 steam locomotive']
+Bear label indices: 452 395
+
+./data/bearSightings/bear_0049.jpg
+['n03895866 passenger car, coach, carriage' 'n04532670 viaduct'
+ 'n03160309 dam, dike, dyke' 'n04005630 prison, prison house'
+ 'n03393912 freight car' 'n03933933 pier'
+ 'n02788148 bannister, banister, balustrade, balusters, handrail'
+ 'n04366367 suspension bridge' 'n02793495 barn'
+ 'n03457902 greenhouse, nursery, glasshouse']
+Bear label indices: 576 486
+
+./data/bearSightings/bear_0046.jpg
+['n04532670 viaduct' 'n03895866 passenger car, coach, carriage'
+ 'n04366367 suspension bridge'
+ 'n04604644 worm fence, snake fence, snake-rail fence, Virginia fence'
+ 'n03393912 freight car' 'n03160309 dam, dike, dyke'
+ 'n04005630 prison, prison house' 'n03272562 electric locomotive'
+ 'n03933933 pier' 'n03457902 greenhouse, nursery, glasshouse']
+Bear label indices: 427 282
+
+./data/bearSightings/bear_0050.jpg
+['n04532670 viaduct' 'n03160309 dam, dike, dyke'
+ 'n03895866 passenger car, coach, carriage'
+ 'n04005630 prison, prison house' 'n03933933 pier' 'n03393912 freight car'
+ 'n04366367 suspension bridge' 'n02793495 barn' 'n03899768 patio, terrace'
+ 'n04417672 thatch, thatched roof']
+Bear label indices: 485 436
+
+./data/bearSightings/bear_0058.jpg
+['n04532670 viaduct' 'n03160309 dam, dike, dyke'
+ 'n03895866 passenger car, coach, carriage' 'n04366367 suspension bridge'
+ 'n03933933 pier'
+ 'n02788148 bannister, banister, balustrade, balusters, handrail'
+ 'n03393912 freight car' 'n03457902 greenhouse, nursery, glasshouse'
+ 'n04311004 steel arch bridge'
+ 'n02894605 breakwater, groin, groyne, mole, bulwark, seawall, jetty']
+Bear label indices: 381 313
+
+./data/bearSightings/bear_0008.jpg
+['n03895866 passenger car, coach, carriage' 'n04532670 viaduct'
+ 'n03160309 dam, dike, dyke' 'n03933933 pier'
+ 'n04005630 prison, prison house' 'n03393912 freight car'
+ 'n04366367 suspension bridge' 'n03272562 electric locomotive'
+ 'n03000134 chainlink fence' 'n03457902 greenhouse, nursery, glasshouse']
+Bear label indices: 541 450
+
+./data/bearSightings/bear_0041.jpg
+['n04532670 viaduct' 'n03895866 passenger car, coach, carriage'
+ 'n04366367 suspension bridge'
+ 'n04604644 worm fence, snake fence, snake-rail fence, Virginia fence'
+ 'n03160309 dam, dike, dyke' 'n03393912 freight car'
+ 'n04005630 prison, prison house' 'n03933933 pier'
+ 'n04310018 steam locomotive' 'n03272562 electric locomotive']
+Bear label indices: 276 203
+
+./data/bearSightings/bear_0022.jpg
+['n03895866 passenger car, coach, carriage' 'n04532670 viaduct'
+ 'n03393912 freight car' 'n04005630 prison, prison house'
+ 'n03272562 electric locomotive' 'n03160309 dam, dike, dyke'
+ 'n03933933 pier' 'n04366367 suspension bridge'
+ 'n04335435 streetcar, tram, tramcar, trolley, trolley car'
+ 'n04310018 steam locomotive']
+Bear label indices: 467 430
+
+./data/bearSightings/bear_0023.jpg
+['n03895866 passenger car, coach, carriage' 'n04532670 viaduct'
+ 'n03393912 freight car' 'n04005630 prison, prison house'
+ 'n03272562 electric locomotive' 'n03933933 pier'
+ 'n03160309 dam, dike, dyke' 'n04366367 suspension bridge'
+ 'n04335435 streetcar, tram, tramcar, trolley, trolley car'
+ 'n04310018 steam locomotive']
+Bear label indices: 463 427
+
+./data/bearSightings/bear_0039.jpg
+['n03895866 passenger car, coach, carriage' 'n04532670 viaduct'
+ 'n03160309 dam, dike, dyke' 'n03393912 freight car'
+ 'n04604644 worm fence, snake fence, snake-rail fence, Virginia fence'
+ 'n04366367 suspension bridge' 'n04005630 prison, prison house'
+ 'n03933933 pier' 'n03000134 chainlink fence'
+ 'n03272562 electric locomotive']
+Bear label indices: 450 270
+
+./data/bearSightings/bear_0020.jpg
+['n03895866 passenger car, coach, carriage' 'n04532670 viaduct'
+ 'n03393912 freight car' 'n03272562 electric locomotive'
+ 'n04005630 prison, prison house' 'n03160309 dam, dike, dyke'
+ 'n03933933 pier' 'n04366367 suspension bridge'
+ 'n04335435 streetcar, tram, tramcar, trolley, trolley car'
+ 'n04310018 steam locomotive']
+Bear label indices: 465 428
+
+./data/bearSightings/bear_0018.jpg
+['n03895866 passenger car, coach, carriage' 'n04532670 viaduct'
+ 'n03393912 freight car' 'n03272562 electric locomotive'
+ 'n04005630 prison, prison house' 'n03160309 dam, dike, dyke'
+ 'n03933933 pier'
+ 'n04335435 streetcar, tram, tramcar, trolley, trolley car'
+ 'n04366367 suspension bridge' 'n04310018 steam locomotive']
+Bear label indices: 462 417
+
+./data/bearSightings/bear_0027.jpg
+['n03895866 passenger car, coach, carriage' 'n04532670 viaduct'
+ 'n03393912 freight car' 'n04005630 prison, prison house'
+ 'n03272562 electric locomotive' 'n03933933 pier'
+ 'n03160309 dam, dike, dyke'
+ 'n04335435 streetcar, tram, tramcar, trolley, trolley car'
+ 'n04366367 suspension bridge' 'n04310018 steam locomotive']
+Bear label indices: 453 415
+
+./data/bearSightings/bear_0043.jpg
+['n04532670 viaduct' 'n03895866 passenger car, coach, carriage'
+ 'n04604644 worm fence, snake fence, snake-rail fence, Virginia fence'
+ 'n04005630 prison, prison house' 'n04366367 suspension bridge'
+ 'n03393912 freight car' 'n03160309 dam, dike, dyke' 'n07802026 hay'
+ 'n02793495 barn' 'n04310018 steam locomotive']
+Bear label indices: 223 180
+
+./data/bearSightings/bear_0057.jpg
+['n03895866 passenger car, coach, carriage' 'n04532670 viaduct'
+ 'n03393912 freight car' 'n04366367 suspension bridge'
+ 'n03160309 dam, dike, dyke'
+ 'n02788148 bannister, banister, balustrade, balusters, handrail'
+ 'n04604644 worm fence, snake fence, snake-rail fence, Virginia fence'
+ 'n03457902 greenhouse, nursery, glasshouse'
+ 'n04005630 prison, prison house' 'n02793495 barn']
+Bear label indices: 471 342
+
+./data/bearSightings/bear_0009.jpg
+['n03895866 passenger car, coach, carriage' 'n04532670 viaduct'
+ 'n03160309 dam, dike, dyke' 'n03933933 pier'
+ 'n04005630 prison, prison house' 'n03393912 freight car'
+ 'n04366367 suspension bridge' 'n03000134 chainlink fence'
+ 'n03272562 electric locomotive'
+ 'n03457902 greenhouse, nursery, glasshouse']
+Bear label indices: 536 452
+
+./data/bearSightings/bear_0032.jpg
+['n03895866 passenger car, coach, carriage' 'n04532670 viaduct'
+ 'n03393912 freight car' 'n04005630 prison, prison house'
+ 'n03272562 electric locomotive'
+ 'n04335435 streetcar, tram, tramcar, trolley, trolley car'
+ 'n04310018 steam locomotive' 'n03160309 dam, dike, dyke' 'n03933933 pier'
+ 'n04366367 suspension bridge']
+Bear label indices: 415 424
+
+./data/bearSightings/bear_0042.jpg
+['n04532670 viaduct' 'n03895866 passenger car, coach, carriage'
+ 'n04366367 suspension bridge'
+ 'n04604644 worm fence, snake fence, snake-rail fence, Virginia fence'
+ 'n04005630 prison, prison house' 'n03160309 dam, dike, dyke'
+ 'n03393912 freight car' 'n03933933 pier' 'n04310018 steam locomotive'
+ 'n02793495 barn']
+Bear label indices: 242 171
+
+./data/bearSightings/bear_0026.jpg
+['n03895866 passenger car, coach, carriage' 'n04532670 viaduct'
+ 'n03393912 freight car' 'n04005630 prison, prison house'
+ 'n03272562 electric locomotive' 'n03933933 pier'
+ 'n03160309 dam, dike, dyke' 'n04366367 suspension bridge'
+ 'n04335435 streetcar, tram, tramcar, trolley, trolley car'
+ 'n04310018 steam locomotive']
+Bear label indices: 450 417
+
+./data/bearSightings/bear_0054.jpg
+['n03895866 passenger car, coach, carriage' 'n04532670 viaduct'
+ 'n03160309 dam, dike, dyke' 'n04366367 suspension bridge'
+ 'n03393912 freight car'
+ 'n02788148 bannister, banister, balustrade, balusters, handrail'
+ 'n04604644 worm fence, snake fence, snake-rail fence, Virginia fence'
+ 'n03457902 greenhouse, nursery, glasshouse'
+ 'n04005630 prison, prison house' 'n03933933 pier']
+Bear label indices: 485 336
+
+./data/bearSightings/bear_0012.jpg
+['n03160309 dam, dike, dyke' 'n03895866 passenger car, coach, carriage'
+ 'n04532670 viaduct' 'n04005630 prison, prison house' 'n03933933 pier'
+ 'n04366367 suspension bridge' 'n03393912 freight car' 'n02793495 barn'
+ 'n03457902 greenhouse, nursery, glasshouse' 'n03781244 monastery']
+Bear label indices: 471 414
+
+./data/bearSightings/bear_0015.jpg
+['n03895866 passenger car, coach, carriage' 'n04532670 viaduct'
+ 'n03393912 freight car' 'n04005630 prison, prison house'
+ 'n03272562 electric locomotive' 'n03160309 dam, dike, dyke'
+ 'n03933933 pier' 'n04366367 suspension bridge'
+ 'n04335435 streetcar, tram, tramcar, trolley, trolley car'
+ 'n04310018 steam locomotive']
+Bear label indices: 470 421
+
+./data/bearSightings/bear_0017.jpg
+['n03895866 passenger car, coach, carriage' 'n04532670 viaduct'
+ 'n03393912 freight car' 'n03272562 electric locomotive'
+ 'n04005630 prison, prison house' 'n03160309 dam, dike, dyke'
+ 'n03933933 pier'
+ 'n04335435 streetcar, tram, tramcar, trolley, trolley car'
+ 'n04366367 suspension bridge' 'n04310018 steam locomotive']
+Bear label indices: 476 412
+
+./data/bearSightings/bear_0037.jpg
+['n03895866 passenger car, coach, carriage' 'n04532670 viaduct'
+ 'n04366367 suspension bridge' 'n04005630 prison, prison house'
+ 'n04604644 worm fence, snake fence, snake-rail fence, Virginia fence'
+ 'n03393912 freight car' 'n03160309 dam, dike, dyke'
+ 'n04310018 steam locomotive' 'n02793495 barn' 'n03000134 chainlink fence']
+Bear label indices: 234 186
+
+./data/bearSightings/bear_0019.jpg
+['n03895866 passenger car, coach, carriage' 'n04532670 viaduct'
+ 'n03393912 freight car' 'n04005630 prison, prison house'
+ 'n03272562 electric locomotive' 'n03160309 dam, dike, dyke'
+ 'n03933933 pier' 'n04366367 suspension bridge'
+ 'n04335435 streetcar, tram, tramcar, trolley, trolley car'
+ 'n04310018 steam locomotive']
+Bear label indices: 448 418
+
+./data/bearSightings/bear_0034.jpg
+['n03895866 passenger car, coach, carriage' 'n04532670 viaduct'
+ 'n03393912 freight car'
+ 'n04604644 worm fence, snake fence, snake-rail fence, Virginia fence'
+ 'n04366367 suspension bridge' 'n03272562 electric locomotive'
+ 'n03160309 dam, dike, dyke' 'n04005630 prison, prison house'
+ 'n02793495 barn' 'n03457902 greenhouse, nursery, glasshouse']
+Bear label indices: 474 303
+
+./data/bearSightings/bear_0010.jpg
+['n03895866 passenger car, coach, carriage' 'n04532670 viaduct'
+ 'n03160309 dam, dike, dyke' 'n03933933 pier'
+ 'n04005630 prison, prison house' 'n03393912 freight car'
+ 'n04366367 suspension bridge' 'n03272562 electric locomotive'
+ 'n03000134 chainlink fence' 'n03457902 greenhouse, nursery, glasshouse']
+Bear label indices: 540 472
+
+./data/bearSightings/bear_0059.jpg
+['n03160309 dam, dike, dyke' 'n04532670 viaduct'
+ 'n03895866 passenger car, coach, carriage' 'n04366367 suspension bridge'
+ 'n03933933 pier'
+ 'n02788148 bannister, banister, balustrade, balusters, handrail'
+ 'n04311004 steel arch bridge' 'n03457902 greenhouse, nursery, glasshouse'
+ 'n03393912 freight car' 'n03000134 chainlink fence']
+Bear label indices: 434 350
+
+./data/bearSightings/bear_0014.jpg
+['n03895866 passenger car, coach, carriage' 'n04532670 viaduct'
+ 'n03393912 freight car' 'n04005630 prison, prison house'
+ 'n03272562 electric locomotive' 'n03160309 dam, dike, dyke'
+ 'n03933933 pier'
+ 'n04335435 streetcar, tram, tramcar, trolley, trolley car'
+ 'n04310018 steam locomotive' 'n04366367 suspension bridge']
+Bear label indices: 459 401
+
+./data/bearSightings/bear_0001.jpg
+['n03895866 passenger car, coach, carriage' 'n03160309 dam, dike, dyke'
+ 'n04532670 viaduct' 'n03933933 pier' 'n04366367 suspension bridge'
+ 'n03393912 freight car' 'n04005630 prison, prison house'
+ 'n03000134 chainlink fence' 'n03272562 electric locomotive'
+ 'n02788148 bannister, banister, balustrade, balusters, handrail']
+Bear label indices: 563 470
+
+./data/bearSightings/bear_0051.jpg
+['n03895866 passenger car, coach, carriage' 'n04532670 viaduct'
+ 'n04005630 prison, prison house' 'n02793495 barn' 'n07802026 hay'
+ 'n03899768 patio, terrace' 'n03160309 dam, dike, dyke'
+ 'n03776460 mobile home, manufactured home' 'n03393912 freight car'
+ 'n02788148 bannister, banister, balustrade, balusters, handrail']
+Bear label indices: 397 337
+
+./data/bearSightings/bear_0007.jpg
+['n03895866 passenger car, coach, carriage' 'n04532670 viaduct'
+ 'n03160309 dam, dike, dyke' 'n03933933 pier'
+ 'n04005630 prison, prison house' 'n03393912 freight car'
+ 'n04366367 suspension bridge' 'n03000134 chainlink fence'
+ 'n03272562 electric locomotive'
+ 'n04335435 streetcar, tram, tramcar, trolley, trolley car']
+Bear label indices: 555 460
+
+./data/bearSightings/bear_0036.jpg
+['n03895866 passenger car, coach, carriage' 'n04532670 viaduct'
+ 'n04604644 worm fence, snake fence, snake-rail fence, Virginia fence'
+ 'n04005630 prison, prison house' 'n03393912 freight car' 'n02793495 barn'
+ 'n07802026 hay' 'n04366367 suspension bridge'
+ 'n03776460 mobile home, manufactured home' 'n04310018 steam locomotive']
+Bear label indices: 224 171
+
+./data/bearSightings/bear_0028.jpg
+['n03895866 passenger car, coach, carriage' 'n04532670 viaduct'
+ 'n03393912 freight car' 'n04005630 prison, prison house'
+ 'n03272562 electric locomotive' 'n03933933 pier'
+ 'n03160309 dam, dike, dyke' 'n04366367 suspension bridge'
+ 'n04335435 streetcar, tram, tramcar, trolley, trolley car'
+ 'n04310018 steam locomotive']
+Bear label indices: 456 404
+
+./data/bearSightings/bear_0016.jpg
+['n03895866 passenger car, coach, carriage' 'n04532670 viaduct'
+ 'n03393912 freight car' 'n03272562 electric locomotive'
+ 'n04005630 prison, prison house' 'n03160309 dam, dike, dyke'
+ 'n03933933 pier' 'n04366367 suspension bridge'
+ 'n04335435 streetcar, tram, tramcar, trolley, trolley car'
+ 'n04310018 steam locomotive']
+Bear label indices: 461 404
+
+./data/bearSightings/bear_0003.jpg
+['n03895866 passenger car, coach, carriage' 'n03160309 dam, dike, dyke'
+ 'n04532670 viaduct' 'n03933933 pier' 'n03393912 freight car'
+ 'n04366367 suspension bridge' 'n04005630 prison, prison house'
+ 'n03000134 chainlink fence'
+ 'n02788148 bannister, banister, balustrade, balusters, handrail'
+ 'n03956157 planetarium']
+Bear label indices: 557 465
+
+./data/bearSightings/bear_0048.jpg
+['n03895866 passenger car, coach, carriage'
+ 'n04604644 worm fence, snake fence, snake-rail fence, Virginia fence'
+ 'n04532670 viaduct' 'n04366367 suspension bridge' 'n03393912 freight car'
+ 'n04326547 stone wall' 'n03930313 picket fence, paling'
+ 'n03160309 dam, dike, dyke' 'n03272562 electric locomotive'
+ 'n03697007 lumbermill, sawmill']
+Bear label indices: 410 395
+
+./data/bearSightings/bear_0011.jpg
+['n03895866 passenger car, coach, carriage' 'n04532670 viaduct'
+ 'n03160309 dam, dike, dyke' 'n03933933 pier'
+ 'n04005630 prison, prison house' 'n03393912 freight car'
+ 'n04366367 suspension bridge' 'n03272562 electric locomotive'
+ 'n03000134 chainlink fence'
+ 'n02788148 bannister, banister, balustrade, balusters, handrail']
+Bear label indices: 539 460
+
+./data/bearSightings/bear_0055.jpg
+['n03895866 passenger car, coach, carriage' 'n04532670 viaduct'
+ 'n03160309 dam, dike, dyke' 'n03393912 freight car'
+ 'n04366367 suspension bridge'
+ 'n02788148 bannister, banister, balustrade, balusters, handrail'
+ 'n04604644 worm fence, snake fence, snake-rail fence, Virginia fence'
+ 'n03457902 greenhouse, nursery, glasshouse'
+ 'n04005630 prison, prison house' 'n03000134 chainlink fence']
+Bear label indices: 507 350
+
+./data/bearSightings/bear_0025.jpg
+['n03895866 passenger car, coach, carriage' 'n04532670 viaduct'
+ 'n03393912 freight car' 'n04005630 prison, prison house'
+ 'n03272562 electric locomotive' 'n03933933 pier'
+ 'n03160309 dam, dike, dyke' 'n04366367 suspension bridge'
+ 'n04335435 streetcar, tram, tramcar, trolley, trolley car'
+ 'n03457902 greenhouse, nursery, glasshouse']
+Bear label indices: 447 426
+
+./data/bearSightings/bear_0038.jpg
+['n04532670 viaduct' 'n03895866 passenger car, coach, carriage'
+ 'n04005630 prison, prison house'
+ 'n04604644 worm fence, snake fence, snake-rail fence, Virginia fence'
+ 'n04366367 suspension bridge' 'n03393912 freight car' 'n07802026 hay'
+ 'n02793495 barn' 'n03160309 dam, dike, dyke' 'n04310018 steam locomotive']
+Bear label indices: 245 189
+
+./data/bearSightings/bear_0005.jpg
+['n03895866 passenger car, coach, carriage' 'n04532670 viaduct'
+ 'n03160309 dam, dike, dyke' 'n03933933 pier' 'n03393912 freight car'
+ 'n04005630 prison, prison house' 'n04366367 suspension bridge'
+ 'n03000134 chainlink fence' 'n03272562 electric locomotive'
+ 'n02788148 bannister, banister, balustrade, balusters, handrail']
+Bear label indices: 543 455
+
+./data/bearSightings/bear_0045.jpg
+['n03895866 passenger car, coach, carriage' 'n04532670 viaduct'
+ 'n04604644 worm fence, snake fence, snake-rail fence, Virginia fence'
+ 'n03393912 freight car' 'n04366367 suspension bridge'
+ 'n03160309 dam, dike, dyke' 'n04005630 prison, prison house'
+ 'n03272562 electric locomotive'
+ 'n03457902 greenhouse, nursery, glasshouse' 'n03933933 pier']
+Bear label indices: 442 281
+
+./data/bearSightings/bear_0030.jpg
+['n03895866 passenger car, coach, carriage' 'n04532670 viaduct'
+ 'n03393912 freight car' 'n04005630 prison, prison house'
+ 'n03272562 electric locomotive' 'n03933933 pier'
+ 'n04366367 suspension bridge' 'n03160309 dam, dike, dyke'
+ 'n04335435 streetcar, tram, tramcar, trolley, trolley car'
+ 'n04310018 steam locomotive']
+Bear label indices: 442 402
+
+./data/bearSightings/bear_0044.jpg
+['n03895866 passenger car, coach, carriage' 'n04532670 viaduct'
+ 'n04604644 worm fence, snake fence, snake-rail fence, Virginia fence'
+ 'n04366367 suspension bridge' 'n03393912 freight car'
+ 'n04005630 prison, prison house' 'n03160309 dam, dike, dyke'
+ 'n03272562 electric locomotive' 'n03933933 pier'
+ 'n04310018 steam locomotive']
+Bear label indices: 408 265
+
+./data/bearSightings/bear_0040.jpg
+['n04532670 viaduct' 'n03895866 passenger car, coach, carriage'
+ 'n04366367 suspension bridge'
+ 'n04604644 worm fence, snake fence, snake-rail fence, Virginia fence'
+ 'n03160309 dam, dike, dyke' 'n04005630 prison, prison house'
+ 'n03393912 freight car' 'n03933933 pier' 'n04310018 steam locomotive'
+ 'n02793495 barn']
+Bear label indices: 239 174
