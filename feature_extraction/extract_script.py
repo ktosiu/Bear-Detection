@@ -3,7 +3,11 @@
 A script to extract features.
 
 Example:
-    $ python extract_script.py hello.jpg --window 0 100 100 200 --output out.txt
+    $ python extract_script.py hello.jpg --gpu --window 0 100 100 200 --output out.txt
+
+A more sophisticated script might be able to do this in bulk, to avoid the 
+overhead of initializing Caffe each time the script is to be run, or be able 
+to run feature extraction for multiple windows on the same image.
 """
 
 from __future__ import print_function
@@ -88,7 +92,7 @@ def main(argv):
     # If the layer is unspecified, use the penultimate layer
     if layer_name == None:
         layer_name = list(net.blobs.keys())[-2]
-        print("Extracting features from layer:%s",layer_name)
+        print("Extracting features from layer:",layer_name)
 
     # Load the image
     try:
