@@ -1,3 +1,7 @@
+% Installing CUDA on EC2 
+% bab
+% October 30, 2014
+
 # Installing Cuda
 
 On a g2.2xlarge instance running Ubuntu Server 14.04 LTS (HVM) SSD Volume Type
@@ -9,15 +13,15 @@ sudo su
 
 Update and upgrade
 ```
-apt-get update &&  apt-get upgrade
+apt-get -y update &&  apt-get -y upgrade
 ```
 ```
-apt-get install build-essential
+apt-get install -y build-essential
 ```
 
 Install what is presumably virtual machine driver support
 ```
-sudo apt-get install linux-image-extra-virtual
+sudo apt-get install -y linux-image-extra-virtual
 ```
 
 Reboot.
@@ -74,7 +78,7 @@ mkdir nvidia_installers
 ```
 
  Run Nvidia driver installer
- ```
+```
  cd nvidia_installers
 
 ./NVIDIA-Linux-x86_64-340.29.run

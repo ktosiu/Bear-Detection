@@ -1,3 +1,7 @@
+% Installing Caffe on EC2 
+% bab
+% October 30, 2014
+
 # Installing Caffe 
 
 Very similar to installing for CPU only.
@@ -86,15 +90,6 @@ make
 make install
 ```
 
-Build Caffe Core
-```
-cd /opt/caffe && \
-  cp Makefile.config.example Makefile.config && \
-  echo "CXX := /usr/bin/g++-4.6" >> Makefile.config && \
-  sed -i 's/CXX :=/CXX ?=/' Makefile && \
-  make all
-```
-
 Install Python dependencies
 ```
 cd /opt/caffe && easy_install numpy
@@ -102,6 +97,16 @@ cd /opt/caffe && easy_install numpy
 cd /opt/caffe && pip install -r python/requirements.txt
 
 easy_install pillow
+```
+
+Build Caffe Core
+
+```
+cd /opt/caffe && \
+  cp Makefile.config.example Makefile.config && \
+  echo "CXX := /usr/bin/g++-4.6" >> Makefile.config && \
+  sed -i 's/CXX :=/CXX ?=/' Makefile && \
+  make all
 ```
 
 Fix `libarray.h` error due to numpy not being found

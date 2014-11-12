@@ -1,3 +1,7 @@
+% Installing CPU-Only Version of Caffe on EC2 
+% bab
+% October 30, 2014
+
 # Installing Caffe
 
 This takes a significant amount of time. The purpose of a number of these libraries and so on that are unknown to me. It compiles more or less everything needed, which can take awhile. It might be better to use a Python package/distribution manager like Anaconda, but I haven't gotten that running yet. 
