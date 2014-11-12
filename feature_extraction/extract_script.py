@@ -109,10 +109,10 @@ def main(argv):
     resized = caffe.io.resize_image(cropped_image, net.image_dims)
 
     # Preprocess for caffe
-    caffe_input = np.asarray(net.preprocess(net.inputs[0], resized))
+    caffe_input = np.asarray([net.preprocess(net.inputs[0], resized)])
 
     # Forward the result (note that we can't seem to use just `net.forward`)
-    out = net.forward_all(**{net.inputs[0], caffe_input})
+    out = net.forward_all(**{net.inputs[0]: caffe_input})
 
     # Extract the features from the layer
     feat = net.blobs[layer_name].data
