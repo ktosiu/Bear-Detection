@@ -84,8 +84,7 @@ cd /home/ubuntu && mkdir -p certificates
 
 cd /home/ubuntu/certificates 
 
-openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout nbserver_cert.pem -out nbserver_cert.pem
-```
+openssl req -x509 -nodes -days 365 -newkey rsa:1024 -keyout mycert.pem -out mycert.pem
 
 # Notes
 
