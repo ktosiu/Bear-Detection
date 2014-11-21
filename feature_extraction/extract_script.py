@@ -1,4 +1,4 @@
-#!python3
+#!python
 """
 A script to extract features.
 
