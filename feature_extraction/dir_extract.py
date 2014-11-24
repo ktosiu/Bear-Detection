@@ -30,11 +30,6 @@ def main(argv):
         default="./feat/")
 
     parser.add_argument(
-        "--output_suffix",
-        help="output directory to store the features",
-        default=os.path.abspath(os.path.join(os.path.curdir, 'feat.txt')))
-
-    parser.add_argument(
         "--layer_name",
         help="name of layer from which features are to be extracted",
         default=None)
@@ -48,10 +43,9 @@ def main(argv):
 
     print(args) # REMOVE
 
-    input_files	 	= glob.iglob(args.pathname)
-    output_dir  	= args.output_dir
-    output_suffix	= args.output_suffix
-    layer_name  	= args.layer_name
+    input_files     = glob.iglob(args.pathname)
+    output_dir      = args.output_dir
+    layer_name      = args.layer_name
     
     # Specify root directory for caffe
     caffe_root = '/opt/caffe'
@@ -82,32 +76,32 @@ def main(argv):
         print("Extracting features from layer:",layer_name)
 
     for path in input_files:
-	    # Load the image
-    	try:
-    		print(input_file)
-        	output_name = os.path.splitext(os.path.basename(input_file))[0]
-        	output_path = os.path.join(output_dir, output_name) 
-        	print(output_path)
-        	input_image = caffe.io.load_image(input_file) 
-    	except Exception as e:
-        	raise(e)
+        # Load the image
+        try:
+            print(input_file)
+            output_name = os.path.splitext(os.path.basename(input_file))[0]
+            output_path = os.path.join(output_dir, output_name) 
+            print(output_path)
+            input_image = caffe.io.load_image(input_file) 
+        except Exception as e:
+            raise(e)
 
-	    # Resize the image for the net
-	    resized = caffe.io.resize_image(input_image, net.image_dims)
+        # Resize the image for the net
+        resized = caffe.io.resize_image(input_image, net.image_dims)
 
-	    # Preprocess for caffe
-	    caffe_input = np.asarray([net.preprocess(net.inputs[0], resized)])
+        # Preprocess for caffe
+        caffe_input = np.asarray([net.preprocess(net.inputs[0], resized)])
 
-	    # Forward the result (note that we can't seem to use just `net.forward`)
-	    out = net.forward_all(**{net.inputs[0]: caffe_input})
+        # Forward the result (note that we can't seem to use just `net.forward`)
+        out = net.forward_all(**{net.inputs[0]: caffe_input})
 
-	    # Extract the features from the layer
-	    feat = net.blobs[layer_name].data
-	    # Flatten the features to convert to a vector
-	    feat = feat.flatten()
+        # Extract the features from the layer
+        feat = net.blobs[layer_name].data
+        # Flatten the features to convert to a vector
+        feat = feat.flatten()
 
-	    # Save the result
-	    np.savetxt(output_path, feat)
+        # Save the result
+        np.savetxt(output_path, feat)
 
 if __name__ == "__main__":
     main(sys.argv)
