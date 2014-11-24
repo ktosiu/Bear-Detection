@@ -78,10 +78,10 @@ def main(argv):
     for path in input_files:
         # Load the image
         try:
-            print(path)
+            print("Image Path:", path)
             output_name = os.path.splitext(os.path.basename(path))[0]
-            output_path = os.path.join(output_dir, output_name) + '.' + layer_name 
-            print(output_path)
+            output_path = os.path.join(output_dir, output_name) + '.' + layer_name + '.txt' 
+            print("Output path", output_path)
             input_image = caffe.io.load_image(path) 
         except Exception as e:
             raise(e)
