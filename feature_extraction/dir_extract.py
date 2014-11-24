@@ -80,7 +80,7 @@ def main(argv):
         try:
             print(path)
             output_name = os.path.splitext(os.path.basename(path))[0]
-            output_path = os.path.join(output_dir, output_name) 
+            output_path = os.path.join(output_dir, output_name) + '.' + layer_name 
             print(output_path)
             input_image = caffe.io.load_image(path) 
         except Exception as e:
