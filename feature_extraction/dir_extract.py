@@ -1,6 +1,17 @@
 #!python3
 """
 Use Caffe to perform feature extraction on an entire directory of images.
+
+Examples:
+    $ python dir_extract.py "/dir/with/images/" "/feature/output/dir"
+
+    Perform simple feature extraction on all images in '/dir/with/images', and 
+    store the result in '/feature/output/dir'
+
+    $ python dir_extract.py "/input/dir" "/output/dir" --layer_name fc7
+
+    Perform feature extraction on all images, store outputs in '/output/dir', 
+    using the data from the layer `fc7` as the features. 
 """
 
 from __future__ import print_function
@@ -26,8 +37,7 @@ def main(argv):
 
     parser.add_argument(
         "output_dir",
-        help="The output directory in which to store the extracted features",
-        default="./feat/")
+        help="The output directory in which to store the extracted features")
 
     parser.add_argument(
         "--layer_name",
@@ -47,6 +57,9 @@ def main(argv):
     output_dir      = args.output_dir
     layer_name      = args.layer_name
     
+    if not os.path.isdir(output_dir):
+        raise Exception("output directory does not exist!")
+
     # Specify root directory for caffe
     caffe_root = '/opt/caffe'
     # Set the path to model file and pretrained model weights
