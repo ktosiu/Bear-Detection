@@ -69,7 +69,7 @@ def extract_features(img_path, layer_name=None, window=[], gpu=False):
     return feat
 
 # Setup for the server
-port_num = 8910
+port_num = 8888
 hostname = "0.0.0.0"
 # restrict to a particular path 
 class RequestHandler(SimpleXMLRPCRequestHandler):
