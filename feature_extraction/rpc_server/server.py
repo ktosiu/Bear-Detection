@@ -56,15 +56,25 @@ def extract_features(img_path, layer_name=None, window=[], gpu=False):
     if layer_name == None:
         layer_name = list(net.blobs.keys())[-2]
 
+    # Load the image from the path
     try:
+        img_path    = os.path.abspath(img_path)
         input_image = caffe.io.load_image(img_path)
     except Exception as e:
         raise(e)
+    # Crop and resize the image
     cropped = input_image
-    # resized = caffe.io.resize_image
+    resized = caffe.io.resize_image(cropped, net.image_dims)
 
+    # Preprocess for Caffe
+    caffe_input = np.asarray([net.preprocess(net.inputs[0], resized)])
 
-    feat = []
+    # Forward pass through Caffe network
+    out = net.forward_all(**{net.inputs[0]: caffe_input})
+
+    # Extract the features, convert to a list, return them
+    feat = net.blobs[layer_name].data
+    feat = feat.flatten()
 
     return feat
 
