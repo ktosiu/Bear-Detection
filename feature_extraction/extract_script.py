@@ -1,4 +1,4 @@
-#!python3
+#!python
 """
 A script to extract features.
 
@@ -17,7 +17,11 @@ import os
 import sys
 import numpy as np 
 
-import caffe
+try:
+    import caffe
+except ImportError as e:
+    sys.path.append('/opt/caffe/python')
+    import caffe
 
 
 def winfunc(s):
