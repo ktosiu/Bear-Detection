@@ -56,9 +56,17 @@ def extract_features(img_path, layer_name=None, window=[], gpu=False):
     if layer_name == None:
         layer_name = list(net.blobs.keys())[-2]
 
+    try:
+        input_image = caffe.io.load_image(img_path)
+    except Exception as e:
+        raise(e)
+    cropped = input_image
+    # resized = caffe.io.resize_image
 
 
     feat = []
 
     return feat
 
+server.register_function(extract_features)
+server.serve_forever()
