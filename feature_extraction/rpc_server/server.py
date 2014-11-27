@@ -76,7 +76,8 @@ def extract_features(img_path, layer_name=None, window=[], gpu=False):
     feat = net.blobs[layer_name].data
     feat = feat.flatten()
 
-    return feat
+    ret  = feat.tolist()
+    return ret
 
 # Setup for the server
 port_num = 8888
