@@ -68,5 +68,20 @@ def extract_features(img_path, layer_name=None, window=[], gpu=False):
 
     return feat
 
+# Setup for the server
+port_num = 8910
+hostname = "0.0.0.0"
+# restrict to a particular path 
+class RequestHandler(SimpleXMLRPCRequestHandler):
+    rpc_paths = ('/RPC2',)
+
+# Create server 
+server = SimpleXMLRPCServer((hostname, port_num), requestHandler=RequestHandler)
+print("Listening on port:", port_num)
+server.register_introspection_functions()
+
+# Register functions
 server.register_function(extract_features)
+
+# Start main loop
 server.serve_forever()
