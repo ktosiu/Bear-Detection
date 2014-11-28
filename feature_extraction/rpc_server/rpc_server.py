@@ -63,7 +63,7 @@ def extract_features(img_path, layer_name=None, window=[], gpu=False):
     except Exception as e:
         raise(e)
     # Crop and resize the image
-    cropped = input_image
+    cropped = input_image # TODO
     resized = caffe.io.resize_image(cropped, net.image_dims)
 
     # Preprocess for Caffe
@@ -87,7 +87,9 @@ class RequestHandler(SimpleXMLRPCRequestHandler):
     rpc_paths = ('/RPC2',)
 
 # Create server 
-server = SimpleXMLRPCServer((hostname, port_num), requestHandler=RequestHandler)
+server = SimpleXMLRPCServer((hostname, port_num), 
+                            requestHandler=RequestHandler,
+                            allow_none=True)
 print("Listening on port:", port_num)
 server.register_introspection_functions()
 
