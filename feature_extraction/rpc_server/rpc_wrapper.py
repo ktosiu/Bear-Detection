@@ -7,6 +7,13 @@ Assuming Caffe is running on a remote machine that you have access to, on your
 local machine you would run this script via
 
     $ python rpc_wrapper.py <...args...>
+
+Example:
+    $ python rpc_wrapper.py "http://54.173.163.181:8888" "~/Bear-Detection/bear_0041.jpg"
+
+Note:
+    * The `input_file` argument is the path to the input file on the REMOTE machine
+    * The script saves the resulting features in the local directory.
 """
 
 from __future__ import print_function
@@ -64,11 +71,13 @@ def main(argv):
     layer_name  = args.layer_name
     gpu         = args.gpu 
 
+
     print(args) # REMOVE
 
     # Because XML-RPC calls can't handle named arguments, need to handle all
     # default values here...
     # TODO: check input file valid
+
     
     # TODO: check for valid window size
     if all(x == -1 for x in window):
