@@ -38,7 +38,7 @@ net.set_phase_test()
 # Set the mode
 net.set_mode_cpu()
 
-def extract_features(img_path, layer_name=None, window=[], gpu=False):
+def extract_features(img_path, layer_name=None, window=None, gpu=False):
     """
     Perform feature extraction using Caffe on the image located at
     `img_path`, returning the result as a list of floats.
@@ -58,6 +58,7 @@ def extract_features(img_path, layer_name=None, window=[], gpu=False):
 
     # Load the image from the path
     try:
+        img_path    = os.path.expanduser(img_path)
         img_path    = os.path.abspath(img_path)
         input_image = caffe.io.load_image(img_path)
     except Exception as e:

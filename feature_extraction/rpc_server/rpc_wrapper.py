@@ -12,6 +12,7 @@ local machine you would run this script via
 from __future__ import print_function
 
 import argparse
+import numpy as np
 import os
 import sys
 import xmlrpclib
@@ -71,15 +72,22 @@ def main(argv):
     
     # TODO: check for valid window size
     if all(x == -1 for x in window):
-        window = []
+        window = None
 
 
     # Set up the proxy server
-    proxy = xmlrpclib.ServerProxy(remote_host)
+    proxy = xmlrpclib.ServerProxy(remote_host, allow_none=True)
 
     # print(proxy.system.listMethods())
-    # feat = proxy.extract_features(input_file, layer_name, window)
+    feat = proxy.extract_features(input_file, layer_name, window, gpu)
 
+    ## To print to stdout
+    # for x in feat:
+    #     print(x)
+
+    base = os.path.basename(input_file)
+    output_file = base + ".txt"
+    np.savetxt(output_file, feat)
 
 if __name__ == "__main__":
     main(sys.argv)
