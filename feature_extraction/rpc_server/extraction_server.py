@@ -95,7 +95,7 @@ def main(argv):
         net.set_mode_gpu()
     else:
         net.set_mode_cpu()
-    net.set_mean('data', np.load(caffe_root + 'python/caffe/imagenet/ilsvrc_2012_mean.npy')) 
+    net.set_mean('data', np.load(os.path.join(caffe_root,'python/caffe/imagenet/ilsvrc_2012_mean.npy'))) 
     net.set_raw_scale('data', 255)  
     net.set_channel_swap('data', (2,1,0))
 
