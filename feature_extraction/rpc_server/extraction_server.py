@@ -86,11 +86,12 @@ def local_extract(img_path, layer_name=None, window=None):
         input_image = caffe.io.load_image(img_path)
     except Exception as e:
         raise(e)
-    # Crop and resize the image
-    cropped = input_image[window[0]:window[2], window[1]:window[3]]
+    if not window==None:
+        # Crop and resize the image
+        input_image = input_image[window[0]:window[2], window[1]:window[3]]
 
     # Forward pass through Caffe network
-    scores = net.predict([cropped])
+    scores = net.predict([input_image])
 
     # Extract the features
     feat = net.blobs[layer_name].data
