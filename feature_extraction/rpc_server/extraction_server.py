@@ -19,11 +19,11 @@ import xmlrpclib
 from scipy.ndimage import imread
 
 # Try importing Caffe as is, if not, assume it's in /opt/caffe/python
-# try:
-#     import caffe
-# except ImportError as e:
-#     sys.path.append('/opt/caffe/python')
-#     import caffe
+try:
+    import caffe
+except ImportError as e:
+    sys.path.append('/opt/caffe/python')
+    import caffe
 
 
 class RequestHandler(SimpleXMLRPCRequestHandler):
