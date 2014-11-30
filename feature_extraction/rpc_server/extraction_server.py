@@ -142,6 +142,7 @@ def main(argv):
                                 allow_none=True)
     server.register_introspection_functions()
     server.register_function(upload_extract)
+    server.register_function(local_extract)
 
     # Print information once setup is complete
     print("Server set up at:", args.host)
