@@ -38,6 +38,7 @@ net.set_phase_test()
 # Set the mode
 net.set_mode_cpu()
 
+
 def extract_features(img_path, layer_name=None, window=None, gpu=False):
     """
     Perform feature extraction using Caffe on the image located at
@@ -79,6 +80,21 @@ def extract_features(img_path, layer_name=None, window=None, gpu=False):
 
     ret  = feat.tolist()
     return ret
+
+def upload_image(img, img_name):
+    """
+    Upload an image, save it in the local directory under the supplied name.
+
+    Parameters:
+    img : xmlrpclib.Binary 
+        An image in xmlrpclib's binary format
+    img_name : str 
+        The name to give to the image.
+    """
+    name = os.path.basename(img_name)
+    with open(name, 'wb') as f:
+        f.write(img.data)
+
 
 # Setup for the server
 port_num = 8888
