@@ -69,7 +69,7 @@ def main(argv):
     parser = argparse.ArgumentParser()
     parser.add_argument("--host", default="0.0.0.0")
     parser.add_argument("--port", default=8888)
-    parser.add_argument("--gpu", default=False)
+    parser.add_argument("--gpu", action='store_true')
 
     # Get arguments
     args = parser.parse_args()
