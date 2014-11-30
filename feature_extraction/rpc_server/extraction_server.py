@@ -1,7 +1,14 @@
 #!python2.7
 """
 A server which runs Caffe and can be called using XMLRPC in order to perform
-feature extraction.
+feature extraction. 
+
+Loads Caffe, sets up the network, and begins listening for requests for feature
+extraction. Can accept uploaded images (via `upload_extract`) or perform 
+extraction on previously uploaded images (via `local_extract`).
+
+Usage:
+    $ python extraction_server.py [--host <...>] [--port <...>] [--gpu]
 """
 
 from __future__ import print_function
@@ -64,6 +71,33 @@ def upload_extract(img, layer_name=None):
     # Convert features to a list and return the results
     ret  = feat.tolist()
     return ret 
+
+def local_extract(img_path, layer_name=None, window=None):
+    """
+    Perform feature extraction on an image stored on the remote machine.
+    """
+    if layer_name == None:
+        layer_name = list(net.blobs.keys())[-1]
+
+    # Load the image from the path
+    try:
+        img_path    = os.path.expanduser(img_path)
+        img_path    = os.path.abspath(img_path)
+        input_image = caffe.io.load_image(img_path)
+    except Exception as e:
+        raise(e)
+    # Crop and resize the image
+    cropped = input_image[window[0]:window[2], window[1]:window[3]]
+
+    # Forward pass through Caffe network
+    scores = net.predict([cropped])
+
+    # Extract the features
+    feat = net.blobs[layer_name].data
+    feat = feat.flatten()
+
+    ret  = feat.tolist()
+    return ret
 
 def main(argv):
     parser = argparse.ArgumentParser()
