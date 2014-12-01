@@ -1,9 +1,13 @@
 # Large files present in dataset
 data/*.jpg
 
+# OSX Files
+.DS_Store
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
+.ropeproject
 
 # C extensions
 *.so
