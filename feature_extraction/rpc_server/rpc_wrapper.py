@@ -93,9 +93,9 @@ def main(argv):
     for x in feat:
         print(x)
 
-    # base = os.path.basename(input_file)
-    # output_file = base + ".txt"
-    # np.savetxt(output_file, feat)
+    base = os.path.basename(input_file)
+    output_file = base + ".txt"
+    np.savetxt(output_file, feat)
 
 if __name__ == "__main__":
     main(sys.argv)
