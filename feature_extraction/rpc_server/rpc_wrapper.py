@@ -54,7 +54,7 @@ def main(argv):
         type=winfunc)
 
     parser.add_argument(
-        "--layer_name",
+        "--layer",
         help="name of layer from which features are to be extracted",
         default=None)
 
@@ -68,7 +68,7 @@ def main(argv):
     remote_host = args.remote_host
     input_file  = args.input_file
     window      = args.window
-    layer_name  = args.layer_name
+    layer_name  = args.layer
     gpu         = args.gpu 
 
 
