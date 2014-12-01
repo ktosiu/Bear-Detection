@@ -89,13 +89,13 @@ def main(argv):
     # print(proxy.system.listMethods())
     feat = proxy.extract_features(input_file, layer_name, window, gpu)
 
-    ## To print to stdout
-    # for x in feat:
-    #     print(x)
+    # To print to stdout
+    for x in feat:
+        print(x)
 
-    base = os.path.basename(input_file)
-    output_file = base + ".txt"
-    np.savetxt(output_file, feat)
+    # base = os.path.basename(input_file)
+    # output_file = base + ".txt"
+    # np.savetxt(output_file, feat)
 
 if __name__ == "__main__":
     main(sys.argv)

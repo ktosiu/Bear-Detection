@@ -100,6 +100,12 @@ def local_extract(img_path, layer_name=None, window=None):
     ret  = feat.tolist()
     return ret
 
+def upload_image(img, img_name):
+    """
+    Upload an image and save it in a local directory.
+    """
+    pass
+
 def main(argv):
     parser = argparse.ArgumentParser()
     parser.add_argument("--host", default="0.0.0.0")
