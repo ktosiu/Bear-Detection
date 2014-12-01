@@ -72,13 +72,12 @@ def main(argv):
     gpu         = args.gpu 
 
 
-    print(args) # REMOVE
+    #print(args) # for debugging
 
     # Because XML-RPC calls can't handle named arguments, need to handle all
     # default values here...
     # TODO: check input file valid
 
-    
     # TODO: check for valid window size
     if all(x == -1 for x in window):
         window = None
