@@ -104,7 +104,14 @@ def upload_image(img, img_name):
     """
     Upload an image and save it in a local directory.
     """
-    pass
+    UPLOAD_DIR = './uploaded'
+    if not os.path.isdir(UPLOAD_DIR):
+        os.mkdir(UPLOAD_DIR)
+    img_path = os.path.join(UPLOAD_DIR, os.path.basename(img_name))
+    with open(img_path, 'wb') as f:
+        f.write(img.data)
+    return img_path
+
 
 def main(argv):
     parser = argparse.ArgumentParser()
@@ -150,6 +157,7 @@ def main(argv):
     server.register_introspection_functions()
     server.register_function(upload_extract)
     server.register_function(local_extract)
+    server.register_function(upload_image)
 
     # Print information once setup is complete
     print("Server set up at:", args.host)
